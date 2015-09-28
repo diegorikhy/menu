@@ -1,16 +1,40 @@
 
-$w = $(window)
+$w           = $(window)
+subindo      = false
+oddScroll    = 0
+lastPosition = 0
+oddTop       = 0
+downPosition = 0
+upPosition   = 0
 $w.scroll ->
-  scroll = $w.scrollTop()
-  topBar = $('#top-bar')
+  scroll        = $w.scrollTop()
+  topBar        = $('#top-bar')
   topBarContent = $('#top-bar-content')
-  topScroll = 63
+  topScroll     = 60
+
+  if scroll >= oddScroll
+    lastPosition = scroll if subindo
+    downPosition = lastPosition - scroll
+
+    if (upPosition + downPosition) > 0
+      topBarContent.css 'top', (upPosition + downPosition)
+    else
+      topBarContent.css 'top', 0
+    subindo = false
+
+  if scroll < oddScroll
+    lastPosition = scroll unless subindo
+    upPosition = if (lastPosition - scroll) < topScroll then lastPosition - scroll else topScroll
+    topBarContent.css 'top', upPosition if upPosition <= topScroll
+    subindo = true
+
 
   topBar.css 'height', topBarContent[0].offsetHeight
   if scroll > topScroll
     topBarContent.addClass('fixed')
   if scroll <= topScroll
     topBarContent.removeClass('fixed')
+  oddScroll = scroll
 
 
 ###

@@ -1,13 +1,23 @@
-body {margin: 0;}
+$alturaTopMenu: 3.75em;
+
+body {margin: $alturaTopMenu 0 0;}
+img {display: block;}
+
+#top-menu {
+  height: $alturaTopMenu;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
 
 #top-bar {
   transition: all .3s;
   z-index: 100;
   position: relative;
-  .fixed {
+  #top-bar-content {
     position: fixed;
     width: 100%;
-    top: 0;
+    top: $alturaTopMenu;
   }
 }
 
