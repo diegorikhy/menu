@@ -1,0 +1,48 @@
+form(ng-controller="Financeiro::PrevisaoOrcamentaria::FormCtrl" ng-submit="salvar()" ng-init="init(filtro.ano)")
+  .sc-fieldset
+    .left
+      i.sc-icon.sc-icon-arquivo-2.sc-text-blue
+      b.sc-text-md  Adicionar Previsão
+    .clear
+
+    .col-xs-12.col-sm-6.col-md-3.sc-p-v-lg
+      label
+        .sc-label Plano de contas
+        select(ng-model="form.plano_conta_id" ng-change="atualizarPlanoContas()" ng-options="value.id as value.nome for value in planoContasList").sc-input-default.sc-input-block
+
+    .col-xs-12.col-sm-6.col-md-3.sc-p-v-lg
+      label
+        .sc-label Ano
+        select(ng-model="form.ano" ng-change="buscar()" ng-options="value for value in ano").sc-input-default.sc-input-block
+
+    .col-xs-12.col-sm-6.col-md-3.sc-p-v-lg
+      label
+        .sc-label Aplicar nos meses abaixo
+        input(type="text" ng-model="sugestaoValor" sc-currency-input="").sc-input-default.sc-input-block
+    .left.sc-p-v-lg.sc-p-l-lg
+      button(type="button" ng-click="aplicarSugestaoValor()").sc-m-t-xxxl.sc-btn.sc-btn-blue Aplicar
+
+    .clear
+
+  .sc-fieldset
+    div(ng-repeat="mes in meses")
+      .clear(ng-if="$index % 6 == 0")
+      .left.sc-p-v-sm(ng-if="$index % 6 == 0")
+        i.sc-icon.sc-icon-calendario-1.sc-text-blue
+        b.sc-text-md  {{($index + 1) % 5}}º Semestre
+      .clear(ng-if="$index % 6 == 0")
+      .col-xs-12.col-sm-4.col-md-2.sc-p-v-lg
+        label
+          .sc-label
+            input(type="checkbox" ng-model="mes.checked" ng-click="atualizarMes(mes)").sc-checkbox
+            span(style="text-transform: capitalize;").sc-p-l-sm {{nomeMesAno[mes.mes-1]}}
+          input(type="text" ng-model="mes.valor" sc-currency-input="" ng-disabled="!mes.checked").sc-input-default.sc-input-block
+
+    .clear
+  .right.sc-p-r-md
+    button(type="button" ng-click="formulario.close()").sc-btn.sc-btn-red.sc-m-r-xl Cancelar
+    button(type="submit").sc-btn.sc-btn-blue Salvar
+  .clear
+
+  //- pre {{form|json}}
+  //- pre {{meses|json}}
