@@ -2,11 +2,15 @@
 $w = $(window)
 $w.scroll ->
   scroll = $w.scrollTop()
-  topScroll = 40
+  topBar = $('#top-bar')
+  topBarContent = $('#top-bar-content')
+  topScroll = 63
+
+  topBar.css 'height', topBarContent[0].offsetHeight
   if scroll > topScroll
-    $('#top-bar').addClass('fixed')
+    topBarContent.addClass('fixed')
   if scroll <= topScroll
-    $('#top-bar').removeClass('fixed')
+    topBarContent.removeClass('fixed')
 
 
 ###

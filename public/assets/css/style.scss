@@ -1,7 +1,13 @@
 body {margin: 0;}
 
-#top-bar { transition: all .3s; }
-
-.fixed {
-  position: fixed;
+#top-bar {
+  transition: all .3s;
+  z-index: 100;
+  position: relative;
+  .fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
 }
+
