@@ -1,60 +1,25 @@
 section#top-menu.sc-p-v-sm.sc-p-h-xl.sc-bg-blue
   img(src="https://www.seucondominio.com.br/assets/institucional/logo-mobile-c07a4de0cd57b02cf5eaffefcda8d48e.png")
 
-div(ng-controller="Financeiro::PrevisaoOrcamentaria::IndexCtrl")
-  form(ng-submit="buscar()" name="formBusca")
-    section#top-bar.sc-p-t-lg.sc-bg-gray-lighter
-      .sc-p-l-xl.sc-p-b-lg.left
-        button(type="button" ng-click="formulario.open()").sc-btn.sc-btn-blue.sc-btn-awesomeness
-          .sc-btn-icon
-            i.sc-icon.sc-icon-mais-1
-          .sc-btn-text.hidden-xs Adicionar Previsão
-      .sc-p-l-xl.sc-p-b-lg.left
-        div(style="width: 11em;").align-center.sc-p-xs
-          .sc-text-lg.sc-text-blue
-            i(ng-click="filtro.decAno()").sc-icon.sc-icon-seta-7-esquerda.sc-p-sm.sc-cursor-pointer
-            span.sc-p-h-md.sc-text-lg.sc-text-bold {{filtro.ano}}
-            i(ng-click="filtro.incAno()").sc-icon.sc-icon-seta-7-direita.sc-p-sm.sc-cursor-pointer
-      .clear
+section#top-bar.sc-p-v-xxl.sc-p-h-xl.sc-bg-gray-lighter Top Bar
 
-  section#breadcrumb
-    .sc-p-h-xl.sc-p-b-md.sc-bg-gray-lighter.sc-text-gray.sc-border-b-gray-light-solid-md.sc-text-sm
-      a(ng-href="{{baseUrl}}/dashboard") Início
-      |  / Financeiro / Previsão Orçamentária
-
-  section#previsao-orcamentaria
-    ul.sc-accordion
-
-      li(ng-if="formulario.opened").sc-acc-blue.ng-animation-slider
-        div(ng-click="formulario.toggle()").sc-accordion-head.sc-text-blue
-          .sc-accordion-col-3.align-center
-            i.sc-icon.sc-text-xl.sc-icon-mais-1
-          .sc-accordion-elastic-col.title
-            .sc-p-xs Adicionar Previsão
-        div(ng-cloak="" ng-show="formulario.opened").sc-accordion-body.ng-animation-slider.ng-cloak
-          .sc-p-lg
-            div(ng-include="templates.previsaoContas.form")
-
-      //- li.sc-acc-blue-lighter.ng-animation-slider
-        .sc-accordion-head.sc-text-blue
-          .sc-accordion-col-3.align-center
-            i.sc-icon.sc-text-xl.sc-icon-dinheiro-2
-          .sc-accordion-elastic-col.title
-            .sc-p-xs Acumulado {{ filtro.ano }}
-          .sc-accordion-col-12.align-right
-            span.sc-p-r-xxl {{ totalAcumulado() | currency }}
-
-      li(ng-repeat="previsaoContas in Previsao" ng-controller="Financeiro::PrevisaoOrcamentaria::ItemCtrl" ng-init="init(previsaoContas)" ng-class="{'sc-acc-blue': previsaoContas.acc.opened}")
-        div(ng-click="previsaoContas.acc.toggle()").sc-accordion-head.sc-text-blue
-          .sc-accordion-icon-col.sc-divider.align-center
-            i(ng-class="{'sc-rotate-90': previsaoContas.acc.opened}").sc-icon.sc-icon-seta-11-direita.sc-transition
-          div(style="text-transform: capitalize;").sc-accordion-elastic-col.title {{ nomeMesAno[previsaoContas.mes-1] }}
-          .sc-accordion-col-9.align-right {{ totalPrevisao(previsaoContas) | currency }}
-          div(sc-stop-click="").sc-accordion-icon-col.align-center
-            i(ng-click="formularioMensal.open()" ng-class="{'sc-text-white': previsaoContas.acc.opened}").sc-icon.sc-icon-lapis.sc-transition.sc-badge.sc-bg-hover-yellow.sc-text-yellow.sc-text-hover-white.sc-border-radius-full
-        div(ng-show="previsaoContas.acc.opened").sc-accordion-body.ng-animation-slider
-          div(ng-include="templates.previsaoContas.show" ng-hide="formularioMensal.opened")
-          div(ng-include="templates.previsaoContas.formMensal" ng-if="formularioMensal.opened")
-
-  //- pre {{ nomeMesAno|json }}
-  //- pre {{ Previsao|json }}
+section#conteudo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
+  .sc-p-xxxl Conteúdo
