@@ -1,39 +1,55 @@
 
-$w           = $(window)
-subindo      = false
-oddScroll    = 0
-lastPosition = 0
-oddTop       = 0
-downPosition = 0
-upPosition   = 0
+$w            = $(window)
+subindo       = false
+oddScroll     = 0
+lastPosition  = 0
+oddTop        = 0
+topScroll     = 60
+upPosition    = topScroll
+downPosition  = 0
+topMenu       = $('#top-menu')
+topBar        = $('#top-bar')
+topBarContent = $('#top-bar-content')
+
 $w.scroll ->
-  scroll        = $w.scrollTop()
-  topBar        = $('#top-bar')
-  topBarContent = $('#top-bar-content')
-  topScroll     = 60
+  scroll = $w.scrollTop()
 
   if scroll >= oddScroll
+    # SCROLL DOWN
     lastPosition = scroll if subindo
     downPosition = lastPosition - scroll
 
     if (upPosition + downPosition) > 0
+      topMenu.css 'top', (upPosition + downPosition) - topScroll
       topBarContent.css 'top', (upPosition + downPosition)
     else
+      topMenu.css 'top', (-1 * topScroll)
       topBarContent.css 'top', 0
+
+    console.log 'lastPosition', lastPosition
+    console.log 'scroll', scroll
+    console.log 'oddScroll', oddScroll
+    console.log 'upPosition', upPosition
+    console.log 'downPosition', downPosition
+    console.log '-------------------------- descendo'
     subindo = false
 
   if scroll < oddScroll
+    # SCROLL UP
     lastPosition = scroll unless subindo
-    upPosition = if (lastPosition - scroll) < topScroll then lastPosition - scroll else topScroll
-    topBarContent.css 'top', upPosition if upPosition <= topScroll
+    upPosition = if (lastPosition - scroll) < topScroll then (lastPosition - scroll) else topScroll
+    topMenu.css 'top', upPosition - topScroll
+    topBarContent.css 'top', upPosition
+
+    console.log 'lastPosition', lastPosition
+    console.log 'scroll', scroll
+    console.log 'oddScroll', oddScroll
+    console.log 'upPosition', upPosition
+    console.log 'downPosition', downPosition
+    console.log '########################## subindo'
     subindo = true
 
-
   topBar.css 'height', topBarContent[0].offsetHeight
-  if scroll > topScroll
-    topBarContent.addClass('fixed')
-  if scroll <= topScroll
-    topBarContent.removeClass('fixed')
   oddScroll = scroll
 
 
