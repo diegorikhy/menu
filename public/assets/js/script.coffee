@@ -8,6 +8,9 @@ topMenu       = $('#top-menu')
 topBar        = $('#top-bar')
 topBarContent = $('#top-bar-content')
 
+setTopBarHeight = ->
+  topBar.css 'height', topBarContent[0].offsetHeight
+
 $w.scroll ->
   scroll = $w.scrollTop()
   oddScroll = scroll if initScroll
@@ -19,6 +22,9 @@ $w.scroll ->
 
   topMenu.css 'top', position - topScroll
   topBarContent.css 'top', position
-
-  topBar.css 'height', topBarContent[0].offsetHeight
   oddScroll = scroll
+
+$w.resize ->
+  setTopBarHeight()
+
+setTopBarHeight()
